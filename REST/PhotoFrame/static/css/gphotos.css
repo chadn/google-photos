@@ -1,0 +1,41 @@
+/*
+ * Customizations for gphotos.samo.org
+ */
+
+
+#album-details {
+  width: 90vw;
+}
+
+
+/* override frame.css */
+
+.gp-button {
+  height: 20px;
+  line-height: 20px
+}
+
+#albums.mdl-button {
+  height: 30px;
+}
+
+.mdl-list__item--two-line {
+  height: 40px;
+  width: 840px;
+/* wanted to have numbers for each li, but change from flex messes it up
+  display: list-item;
+*/
+}
+/*
+.sample-content {
+  padding: 2% 2%;
+}
+*/
+
+
+/* override material.xxxx.css */
+
+#albums.mdl-list {
+  list-style-type: decimal;
+}
+

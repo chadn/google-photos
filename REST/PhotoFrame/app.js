@@ -243,6 +243,12 @@ app.get('/album', (req, res) => {
   renderIfAuthenticated(req, res, 'pages/album');
 });
 
+// Loads the album details page if the user is authenticated.
+// This page displays lots of details of each album owned by the user.
+app.get('/album-details', (req, res) => {
+  renderIfAuthenticated(req, res, 'pages/album-details');
+});
+
 
 // Handles form submissions from the search page.
 // The user has made a selection and wants to load photos into the photo frame
@@ -355,6 +361,14 @@ app.get('/getAlbums', async (req, res) => {
       albumCache.setItem(userId, data);
     }
   }
+});
+
+// Clear the cached albums owned by the user.
+app.get('/albumCacheReset', async (req, res) => {
+  logger.info('albumCacheReset');
+  const userId = req.user.profile.id;
+  albumCache.removeItem(userId);
+  res.redirect('/album-details');
 });
 
 
@@ -527,7 +541,7 @@ async function libraryApiSearch(authToken, parameters) {
   } catch (err) {
     // Log the error and prepare to return it.
     error = err;
-    logger.error(error);
+    logger.error(JSON.stringify({'libraryApiSearch Error':err}));
   }
 
   logger.info('Search complete.');
@@ -583,7 +597,7 @@ async function libraryApiGetAlbums(authToken) {
   } catch (err) {
     // Log the error and prepare to return it.
     error = err;
-    logger.error(error);
+    logger.error(JSON.stringify({'libraryApiGetAlbums Error':err}));
   }
 
   logger.info('Albums loaded.');
