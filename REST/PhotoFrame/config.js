@@ -16,6 +16,9 @@
 
 export const config = {};
 
+// The secret used to sign cookies for user session data, should be changed.
+config.sessionSecret = 'photo frame sample';
+
 // The OAuth client ID from the Google Developers console.
 config.oAuthClientID = 'ADD YOUR CLIENT ID';
 

@@ -86,13 +86,11 @@ storage.init();
 auth(passport);
 
 // Set up a session middleware to handle user sessions.
-// NOTE: A secret is used to sign the cookie. This is just used for this sample
-// app and should be changed.
 const sessionMiddleware = session({
   resave: true,
   saveUninitialized: true,
   store: new fileStore({}),
-  secret: 'photo frame sample',
+  secret: config.sessionSecret,
 });
 
 // Console transport for winton.
