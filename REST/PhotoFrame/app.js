@@ -119,6 +119,7 @@ if (process.env.DEBUG) {
         ],
         winstonInstance: logger
   }));
+  logger.silly('Started with DEBUG log level.');
 
 } else {
   // By default, only print all 'verbose' log level messages or below.
@@ -400,8 +401,8 @@ app.get('/getQueue', async (req, res) => {
 
 // Start the server
 server.listen(config.port, () => {
-  console.log(`App listening on port ${config.port}`);
-  console.log('Press Ctrl+C to quit.');
+  console.log(`App listening on port ${config.port}, PID=${process.pid}`);
+  console.log('To quit, press Ctrl+C, or from another shell: kill '+ process.pid);
 });
 
 // Renders the given page if the user is authenticated.
